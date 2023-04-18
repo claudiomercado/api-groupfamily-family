@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ar.apigroupfamily.family.app.model.Persona;
 import com.ar.apigroupfamily.family.app.service.ServicePersona;
-import com.ar.apigroupfamily.family.app.utils.FileWriterUtil;
 
 
 @RestController
@@ -37,7 +36,6 @@ public class ControllerPersona {
 	
 	@PostMapping("/createPersona")
 	public Persona create(@RequestBody Persona persona) {
-		FileWriterUtil.createFile("persona.txt", persona.toString());
 		return this.service.create(persona);
 	}
 	
