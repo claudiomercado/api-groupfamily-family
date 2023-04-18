@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ar.apigroupfamily.family.app.model.GrupoFamiliar;
@@ -35,19 +36,24 @@ public class ControllerGrupoFamiliar {
 	}
 	
 	@PostMapping("/createGrupoFamiliar")
-	public void create(@RequestBody GrupoFamiliar grupoFamiliar) {
-		this.service.create(grupoFamiliar);
+	public GrupoFamiliar create(@RequestBody GrupoFamiliar grupoFamiliar) {
+		return this.service.create(grupoFamiliar);
 	}
 	
 	@PutMapping("/update/{id}")
-	public void updateById(@PathVariable Long id, @RequestBody GrupoFamiliar grupoFamiliar) {
-		this.service.update(id, grupoFamiliar);
+	public GrupoFamiliar updateById(@PathVariable Long id, @RequestBody GrupoFamiliar grupoFamiliar) {
+		return this.service.update(id, grupoFamiliar);
 	}
 	
 	@DeleteMapping("/delete/{id}")
 	public void deleteById(@PathVariable Long id) {
 		this.service.delete(id);
 	}
+	
+//	@PostMapping("/addPersonaToFamilia/{idPersona}")
+//	public void addPersona(@PathVariable Long idPersona,@RequestParam Long idFamilia) {
+//		this.service.addPersona(idPersona, idFamilia);
+//	}
 	
 	@GetMapping("/mensaje")
 	public String mensaje() {

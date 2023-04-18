@@ -3,8 +3,6 @@ package com.ar.apigroupfamily.family.app.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,11 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ar.apigroupfamily.family.app.model.GrupoFamiliar;
 import com.ar.apigroupfamily.family.app.model.Persona;
 import com.ar.apigroupfamily.family.app.service.ServicePersona;
+import com.ar.apigroupfamily.family.app.utils.FileWriterUtil;
 
 
 @RestController
@@ -37,24 +36,29 @@ public class ControllerPersona {
 	}
 	
 	@PostMapping("/createPersona")
-	public void create(@RequestBody Persona persona) {
-		this.service.create(persona);
+	public Persona create(@RequestBody Persona persona) {
+		//FileWriterUtil.createFile("persona.txt", persona.toString());
+		return this.service.create(persona);
 	}
 	
 	@PutMapping("/update/{id}")
-	public void updateById(@PathVariable Long id, @RequestBody Persona persona) {
-		this.service.update(id, persona);
+	public Persona updateById(@PathVariable Long id, @RequestBody Persona persona) {
+		return this.service.update(id, persona);
 	}
 	
 	@DeleteMapping("/delete/{id}")
 	public void deleteById(@PathVariable Long id) {
 		this.service.delete(id);
+	}	
+	
+	@PutMapping("/addFamily/{idFamilia}")
+	public Persona addFamilia(@PathVariable(name = "idFamilia") Long idFamilia, @RequestParam (name = "idPersona")Long idPersona) {
+		return this.service.addFamilia(idFamilia, idPersona);
 	}
 	
-	
-	@PutMapping("/addFamily/{idPersona}/{idFamilia}")
-	public Persona addFamily(@PathVariable(name = "idPersona") Long id_persona, @PathVariable (name = "idFamilia")Long id_familia) {
-		return this.service.addFamily(id_persona, id_familia);
+	@PutMapping("/updateFamily/{id}")
+	public Persona updateFamilia(@PathVariable(name = "idFamilia") Long idFamilia, @RequestParam (name = "idPersona")Long idPersona) {
+		return this.service.updateFamilia(idFamilia, idPersona);
 	}
 	
 	@GetMapping("/mensaje")

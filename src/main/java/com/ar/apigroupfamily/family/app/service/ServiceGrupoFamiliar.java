@@ -9,6 +9,7 @@ public interface ServiceGrupoFamiliar {
 	GrupoFamiliar findById(Long id);
 	List<GrupoFamiliar> findAll();
 	GrupoFamiliar create(GrupoFamiliar grupoFamiliar);
-	void update(Long id,GrupoFamiliar grupoFamiliar);
+	GrupoFamiliar update(Long id,GrupoFamiliar grupoFamiliar);
 	void delete(Long id);
+	//void addPersona(Long idPersona, Long idFamilia);
 }

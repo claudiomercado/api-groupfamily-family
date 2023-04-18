@@ -1,5 +1,6 @@
 package com.ar.apigroupfamily.family.app.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +32,12 @@ public class ServicePersonaImpl implements ServicePersona{
 	}
 
 	@Override
-	public void create(Persona persona) {
-		repository.save(persona);
+	public Persona create(Persona persona) {
+		return repository.save(persona);
 	}
 
 	@Override
-	public void update(Long id, Persona persona) {
+	public Persona update(Long id, Persona persona) {
 		Persona p = repository.findById(id).get();
 		
 		p.setNombre(persona.getNombre() != null ?persona.getNombre() : p.getNombre());
@@ -45,9 +46,8 @@ public class ServicePersonaImpl implements ServicePersona{
 		p.setSexo(persona.getSexo() != null ?persona.getSexo() : p.getSexo());
 		p.setFechaNacimiento(persona.getFechaNacimiento() != null ?persona.getFechaNacimiento() : p.getFechaNacimiento());
 		p.setEdad(persona.getEdad() != null ?persona.getEdad() : p.getEdad());
-		//p.setGrupoFamiliar(persona.getGrupoFamiliar()!= null ? persona.getGrupoFamiliar(): p.getGrupoFamiliar());
 		
-		repository.save(p);
+		return repository.save(p);
 	}
 
 	@Override
@@ -55,13 +55,31 @@ public class ServicePersonaImpl implements ServicePersona{
 		repository.deleteById(id);		
 	}
 
-	public Persona addFamily(Long idPersona, Long idFamilia) {
-		Persona p1 = repository.findById(idPersona).get();
+	public Persona addFamilia(Long idFamilia,Long idPersona) {
 		GrupoFamiliar gf = repositoryGF.findById(idFamilia).get();
 		
-		p1.setGrupoFamiliar(gf);
-		repository.save(p1);
-		return this.findById(idPersona);
+		Persona p = repository.findById(idPersona).get();
+		p.setGrupoFamiliar(gf);
+		List<Persona> personas = gf.getPersonas();
+		personas.add(p);
+		
+		gf.setPersonas(personas);
+		repositoryGF.save(gf);
+		return p;
 	}
 
+	@Override
+	public Persona updateFamilia(Long idFamilia, Long idPersona) {
+		GrupoFamiliar gf = repositoryGF.findById(idFamilia).get();
+		
+		Persona p = repository.findById(idPersona).get();
+		p.setGrupoFamiliar(gf);
+		List<Persona> personas = new ArrayList<>();
+		personas.add(p);
+		
+		gf.setPersonas(personas);
+		repositoryGF.save(gf);
+		return p;
+	}
+	
 }

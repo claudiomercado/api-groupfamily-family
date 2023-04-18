@@ -17,8 +17,8 @@ public class ServiceGrupoFamiliarImpl implements ServiceGrupoFamiliar {
 	@Autowired
 	private RepositoryGrupoFamiliar repository;
 	
-	//@Autowired
-	//private RepositoryPersona repositoryPersona;
+//	@Autowired
+//	private RepositoryPersona repositoryPersona;
 
 	@Override
 	public GrupoFamiliar findById(Long id) {
@@ -36,7 +36,7 @@ public class ServiceGrupoFamiliarImpl implements ServiceGrupoFamiliar {
 	}
 
 	@Override
-	public void update(Long id, GrupoFamiliar grupoFamiliar) {
+	public GrupoFamiliar update(Long id, GrupoFamiliar grupoFamiliar) {
 		GrupoFamiliar gf = repository.findById(id).get();
 		List<Persona> integrantes = gf.getPersonas();
 		
@@ -45,7 +45,7 @@ public class ServiceGrupoFamiliarImpl implements ServiceGrupoFamiliar {
 		gf.setMascotas(grupoFamiliar.isMascotas());
 		gf.setPersonas(integrantes);
 		
-		repository.save(gf);		
+		return repository.save(gf);		
 	}
 
 	@Override
@@ -53,6 +53,20 @@ public class ServiceGrupoFamiliarImpl implements ServiceGrupoFamiliar {
 		this.repository.deleteById(id);
 		
 	}
+
+//	@Override
+//	public void addPersona(Long idPersona, Long idFamilia) {
+//		GrupoFamiliar gf = repository.findById(idFamilia).get();
+//	
+//		Persona p = repositoryPersona.findById(idPersona).get();
+//		p.setGrupoFamiliar(gf);
+//		List<Persona> personas = gf.getPersonas();
+//		personas.add(p);
+//		
+//		gf.setPersonas(personas);
+//		repository.save(gf);
+//	
+//	}
 	
 //	@Override
 //	public GrupoFamiliar findById(Long id) {

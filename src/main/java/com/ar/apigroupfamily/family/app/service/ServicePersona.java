@@ -10,8 +10,9 @@ public interface ServicePersona {
 	
 	Persona findById(Long id);
 	List<Persona> findAll();
-	void create(Persona persona);
-	void update(Long id,Persona persona);
+	Persona create(Persona persona);
+	Persona update(Long id,Persona persona);
 	void delete(Long id);
-	Persona addFamily(Long id_persona, Long id_familiar);
+	Persona addFamilia(Long idFamilia, Long idPersona);
+	Persona updateFamilia(Long idFamilia, Long idPersona);
 }
