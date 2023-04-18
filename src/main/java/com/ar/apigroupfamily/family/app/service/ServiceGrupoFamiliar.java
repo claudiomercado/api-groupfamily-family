@@ -11,5 +11,4 @@ public interface ServiceGrupoFamiliar {
 	GrupoFamiliar create(GrupoFamiliar grupoFamiliar);
 	GrupoFamiliar update(Long id,GrupoFamiliar grupoFamiliar);
 	void delete(Long id);
-	//void addPersona(Long idPersona, Long idFamilia);
 }

@@ -2,9 +2,7 @@ package com.ar.apigroupfamily.family.app.service;
 
 import java.util.List;
 
-import com.ar.apigroupfamily.family.app.model.GrupoFamiliar;
 import com.ar.apigroupfamily.family.app.model.Persona;
-
 
 public interface ServicePersona {
 	

@@ -1,7 +1,6 @@
 package com.ar.apigroupfamily.family.app.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,16 +8,12 @@ import org.springframework.stereotype.Service;
 import com.ar.apigroupfamily.family.app.model.GrupoFamiliar;
 import com.ar.apigroupfamily.family.app.model.Persona;
 import com.ar.apigroupfamily.family.app.repository.RepositoryGrupoFamiliar;
-import com.ar.apigroupfamily.family.app.repository.RepositoryPersona;
 
 @Service
 public class ServiceGrupoFamiliarImpl implements ServiceGrupoFamiliar {
 
 	@Autowired
 	private RepositoryGrupoFamiliar repository;
-	
-//	@Autowired
-//	private RepositoryPersona repositoryPersona;
 
 	@Override
 	public GrupoFamiliar findById(Long id) {
@@ -53,43 +48,5 @@ public class ServiceGrupoFamiliarImpl implements ServiceGrupoFamiliar {
 		this.repository.deleteById(id);
 		
 	}
-
-//	@Override
-//	public void addPersona(Long idPersona, Long idFamilia) {
-//		GrupoFamiliar gf = repository.findById(idFamilia).get();
-//	
-//		Persona p = repositoryPersona.findById(idPersona).get();
-//		p.setGrupoFamiliar(gf);
-//		List<Persona> personas = gf.getPersonas();
-//		personas.add(p);
-//		
-//		gf.setPersonas(personas);
-//		repository.save(gf);
-//	
-//	}
-	
-//	@Override
-//	public GrupoFamiliar findById(Long id) {
-//		
-//		GrupoFamiliar familia = repository.findById(id).get();
-//		
-//		List<Persona> integrantes = this.obtenerListado(id);
-//		familia.setPersonas(integrantes);
-//		
-//		return familia;
-//	}
-
-//	public List<Persona> obtenerListado(Long id){
-//		
-////		GrupoFamiliar familia =repository.findById(id).get();	
-////		Long idFamilia = familia.getId();
-//		
-//		List<Persona> personas = repositoryPersona.findAll(); 
-//		List<Persona> integrantes = (List<Persona>) personas.stream().filter(x -> (x.getGrupoFamiliar().getId() ==id));
-//		return integrantes;
-//		
-//	}
-//	
-//	
 
 }
