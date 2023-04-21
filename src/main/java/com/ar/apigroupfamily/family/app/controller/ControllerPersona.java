@@ -37,7 +37,7 @@ public class ControllerPersona {
 	
 	@PostMapping("/createPersona")
 	public Persona create(@RequestBody Persona persona) {
-		//FileWriterUtil.createFile("persona.txt", persona.toString());
+		FileWriterUtil.createFile("persona.txt", persona.toString());
 		return this.service.create(persona);
 	}
 	

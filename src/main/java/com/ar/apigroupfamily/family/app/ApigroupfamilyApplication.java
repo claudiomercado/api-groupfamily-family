@@ -12,8 +12,6 @@ import org.springframework.context.annotation.ComponentScan;
 
 import com.ar.apigroupfamily.family.app.model.GrupoFamiliar;
 import com.ar.apigroupfamily.family.app.model.Persona;
-import com.ar.apigroupfamily.family.app.repository.RepositoryGrupoFamiliar;
-import com.ar.apigroupfamily.family.app.repository.RepositoryPersona;
 import com.ar.apigroupfamily.family.app.service.ServiceGrupoFamiliar;
 import com.ar.apigroupfamily.family.app.service.ServicePersona;
 
@@ -35,14 +33,16 @@ public class ApigroupfamilyApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		GrupoFamiliar gf1 = serviceGF.findById(1L);
-		List<Persona> personas = gf1.getPersonas();
+//		GrupoFamiliar gf1 = serviceGF.findById(1L);
+//		List<Persona> personas = gf1.getPersonas();
+//		
+//		for (Persona persona : personas) {
+//			System.out.println(persona.getNombre());
+//		}
+		Persona p = servicePersona.findById(2L);
+		System.out.println(p);
 		
-		for (Persona persona : personas) {
-			System.out.println(persona.getNombre());
-		}
 		
-	
 	}
 
 }

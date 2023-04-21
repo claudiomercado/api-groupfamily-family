@@ -39,7 +39,7 @@ public class Persona{
 	@Column(name = "edad")
 	private Integer edad;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_grupo_familiar")
 	private GrupoFamiliar grupoFamiliar;
 	
