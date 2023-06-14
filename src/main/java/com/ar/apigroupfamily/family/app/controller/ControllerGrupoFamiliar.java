@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ar.apigroupfamily.family.app.model.GrupoFamiliar;
+import com.ar.apigroupfamily.family.app.service.PersonaToFamiliaService;
 import com.ar.apigroupfamily.family.app.service.ServiceGrupoFamiliar;
 
 @RestController
@@ -24,37 +25,31 @@ public class ControllerGrupoFamiliar {
 	@Autowired
 	ServiceGrupoFamiliar service;
 
-	
 	@GetMapping("/getById/{id}")
 	public GrupoFamiliar getById(@PathVariable Long id) {
 		return this.service.findById(id);
 	}
-	
+
 	@GetMapping("/getAll")
 	public List<GrupoFamiliar> getAll() {
 		return this.service.findAll();
 	}
-	
+
 	@PostMapping("/createGrupoFamiliar")
 	public GrupoFamiliar create(@RequestBody GrupoFamiliar grupoFamiliar) {
 		return this.service.create(grupoFamiliar);
 	}
-	
+
 	@PutMapping("/update/{id}")
 	public GrupoFamiliar updateById(@PathVariable Long id, @RequestBody GrupoFamiliar grupoFamiliar) {
 		return this.service.update(id, grupoFamiliar);
 	}
-	
+
 	@DeleteMapping("/delete/{id}")
 	public void deleteById(@PathVariable Long id) {
 		this.service.delete(id);
 	}
-	
-//	@PostMapping("/addPersonaToFamilia/{idPersona}")
-//	public void addPersona(@PathVariable Long idPersona,@RequestParam Long idFamilia) {
-//		this.service.addPersona(idPersona, idFamilia);
-//	}
-	
+
 	@GetMapping("/mensaje")
 	public String mensaje() {
 		return "this.service.findById(id);";
