@@ -15,7 +15,7 @@ import lombok.Data;
 
 @Data
 @Entity(name = "persona")
-public class Persona{
+public class Persona {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,30 +23,31 @@ public class Persona{
 
 	@Column(name = "nombre")
 	private String nombre;
-	
+
 	@Column(name = "apellido")
 	private String apellido;
-	
+
 	@Column(name = "dni")
 	private String dni;
-	
+
 	@Column(name = "sexo")
 	private String sexo;
-	
+
 	@Column(name = "fecha_nacimiento")
 	private Date fechaNacimiento;
-	
+
 	@Column(name = "edad")
 	private Integer edad;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_grupo_familiar")
 	private GrupoFamiliar grupoFamiliar;
-	
+
 	public Persona() {
 	}
 
-	public Persona(String nombre, String apellido, String dni, String sexo, Date fechaNacimiento,Integer edad,GrupoFamiliar grupoFamiliar) {
+	public Persona(String nombre, String apellido, String dni, String sexo, Date fechaNacimiento, Integer edad,
+			GrupoFamiliar grupoFamiliar) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.dni = dni;
@@ -61,5 +62,5 @@ public class Persona{
 		return "Persona [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", sexo=" + sexo
 				+ ", fechaNacimiento=" + fechaNacimiento + ", edad=" + edad + ", grupoFamiliar=" + grupoFamiliar + "]";
 	}
-	
+
 }

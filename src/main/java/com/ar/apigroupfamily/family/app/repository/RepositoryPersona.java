@@ -8,5 +8,4 @@ import com.ar.apigroupfamily.family.app.model.Persona;
 @Repository
 public interface RepositoryPersona extends JpaRepository<Persona, Long> {
 
-	
 }
